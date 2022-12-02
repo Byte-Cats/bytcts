@@ -1,6 +1,6 @@
 <html>
     <head>
-<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 
         <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -15,26 +15,158 @@ var byteCats = document.createElement('div');
     byteCats.innerHTML = 'Byte Cats';
     byteCats.classList.add("m12");
     byteCats.style.fontFamily = "Fira Code";
-    byteCats.style.fontSize = "3.5em";
-    byteCats.style.fontWeight = "900";
+    byteCats.style.fontSize = "4em";
+    byteCats.style.fontWeight = "500";
 
     byteCats.style.textAlign = "center";
+    byteCats.style.top = "40%";
+    byteCats.style.left = "30%";
     byteCats.style.position = "absolute";
-    byteCats.style.top = "50%";
-    byteCats.style.left = "50%";
-    byteCats.style.transform = "translate(-50%, -50%)";
 
     /* set color to purple */
     byteCats.style.color = "#9c27b0";
     /* set gradient for shadow */
     byteCats.style.textShadow = "0 0 0.5em #9c27b0, 0 0 20px #9c27b0, 0 0 30px #9c27b0, 0 0 40px #9c27b0, 0 0 50px #9c27b0, 0 0 60px #9c27b0, 0 0 70px #9c27b0";
-
-
-
 /* add the div to the body */
 document.body.appendChild(byteCats);
 
-/* message saying code is lyfe at bottom footer */
+/* animate byteCats but go back to center */
+anime({
+    targets: byteCats,
+    translateX: 20,
+    rotate: '1turn',
+    direction: 'alternate',
+    loop: true,
+    easing: 'easeInOutSine',
+    /* add delay to animation */
+    delay: 1000,
+    /* make each letter wiggle */
+    complete: function(anim) {
+        anime({
+            targets: '.m12',
+            translateX: 20,
+            rotate: '1turn',
+            direction: 'alternate',
+            loop: true,
+            easing: 'easeInOutSine',
+            delay: 5000
+        });
+    }
+});
+
+
+
+
+
+
+/* add image as cat: https://github.com/Byte-Cats/bytcts/blob/main/assets/cat.gif?raw=true */
+var cat = document.createElement('img');
+    cat.src = "https://github.com/Byte-Cats/bytcts/blob/main/assets/cat.gif?raw=true";
+    /* mirror the image horizontally */
+    cat.style.transform = "scaleX(-1)";
+    /* set position to the bottom left */
+    cat.style.position = "absolute";
+    cat.style.bottom = "3.5em";
+    cat.style.left = "0";
+    /* set size */
+    cat.style.width = "10%";
+    cat.style.height = "10%";
+    /* add the image to the body */
+    document.body.appendChild(cat);
+
+
+    /* stop cat from being dragged */
+    cat.addEventListener("dragstart", function(event) {
+        event.preventDefault();
+    });
+
+/* if cat is clicked move it slightly more to the right each time*/
+cat.addEventListener("click", function() {
+    var left = parseInt(cat.style.left);
+
+
+    /* anime slide to the right */
+    anime({
+        targets: cat,
+        left: left + 50,
+        easing: 'easeInOutSine',
+        duration: 800
+    });
+});
+
+/* space bar is pressed make cat backflip */
+document.addEventListener("keydown", function(event) {
+    if (event.code == "Space") {
+        /* anime backflip */
+        /* wiggle the cat  once if clicked and stop */
+        anime({
+            targets: cat,
+            translateX: 20,
+            rotate: '1turn',
+            direction: 'alternate',
+            loop: false,
+            easing: 'easeInOutSine',
+            /* slowly animate mirror horizontally */
+            complete: function(anim) {
+                anime({
+                    targets: cat,
+                    scaleX: -1,
+                    easing: 'easeInOutSine',
+                    duration: 300
+                });
+            }
+        });
+    }
+});
+
+
+/* slowly animate cat to the right over time but turn around and go ease back to the left side once left 99% is reached */
+anime({
+    targets: cat,
+    left: '90%',
+    easing: 'easeInOutSine',
+    duration: 8000,
+    /* repeat animation */
+    loop: true,
+    /* slowly animate mirror horizontally */
+    complete: function(anim) {
+        anime({
+            targets: cat,
+            scaleX: 1,
+            easing: 'easeInOutSine',
+            duration: 300
+            /* go back to the left side */
+        }).finished.then(function() {
+            anime({
+                targets: cat,
+                left: '0%',
+                easing: 'easeInOutSine',
+                duration: 10000,
+                /* slowly animate mirror horizontally */
+                complete: function(anim) {
+                    anime({
+                        targets: cat,
+                        scaleX: -1,
+                        easing: 'easeInOutSine',
+                        duration: 300
+                    });
+                }
+            });
+        });
+    }
+});
+
+window.addEventListener("resize", function() {
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    cat.style.width = width / 10 + "px";
+    cat.style.height = height / 10 + "px";
+});
+
+
+
+
+                /* message saying code is lyfe at bottom footer */
 var footer = document.createElement('div');
 footer.innerHTML = 'Code is lyfe';
             /* footer should be centered and anchored always at the bottom of the page */
@@ -49,8 +181,11 @@ footer.innerHTML = 'Code is lyfe';
             footer.style.fontWeight = '900';
             footer.style.textShadow = "0 0 0.5em #9c27b0, 0 0 20px #9c27b0, 0 0 30px #9c27b0, 0 0 40px #9c27b0, 0 0 50px #9c27b0, 0 0 60px #9c27b0, 0 0 70px #9c27b0";
 
+
 document.body.appendChild(footer);
 
+footer.addEventListener("click", function() {
+    window.location.href = "https://github.com/byte-cats/bytcts"; });
 
 
 /* make footer flicker and change colors over time */
@@ -63,6 +198,7 @@ setInterval(function() {
 }, 1500);
 
 });
+
         </script>
     </head>
     <body>
