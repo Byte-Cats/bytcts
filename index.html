@@ -71,7 +71,10 @@ var cat = document.createElement('img');
     /* set size */
     cat.style.width = "10%";
     cat.style.height = "10%";
-    /* add the image to the body */
+    var cat_left = parseInt(cat.style.left);
+    var cat_collide = false;
+
+            /* add the image to the body */
     document.body.appendChild(cat);
 
 
@@ -82,13 +85,27 @@ var cat = document.createElement('img');
 
 /* if cat is clicked move it slightly more to the right each time*/
 cat.addEventListener("click", function() {
-    var left = parseInt(cat.style.left);
+    if (cat_left < 899 && cat_collide == false) {
+        cat_left += 200;
+    }
+    if (cat_left > 899 ) {
+        cat_collide = true;
+    }
+    if (cat_collide == true) {
 
+        cat.style.transform = "scaleX(1)";
+        cat.style.scaleX = "1";
+        cat_left -= 200;
+    }
+    if (cat_left == 0) {
+        cat_collide = false;
+    }
 
     /* anime slide to the right */
     anime({
         targets: cat,
-        left: left + 50,
+        translateX: cat_left + "%",
+        /*mirror the image */
         easing: 'easeInOutSine',
         duration: 800
     });
@@ -97,7 +114,7 @@ cat.addEventListener("click", function() {
 /* space bar is pressed make cat backflip */
 document.addEventListener("keydown", function(event) {
     if (event.code == "Space") {
-        /* anime backflip */
+        /* anime back-flip */
         /* wiggle the cat  once if clicked and stop */
         anime({
             targets: cat,
@@ -120,41 +137,8 @@ document.addEventListener("keydown", function(event) {
 });
 
 
-/* slowly animate cat to the right over time but turn around and go ease back to the left side once left 99% is reached */
-anime({
-    targets: cat,
-    left: '90%',
-    easing: 'easeInOutSine',
-    duration: 8000,
-    /* repeat animation */
-    loop: true,
-    /* slowly animate mirror horizontally */
-    complete: function(anim) {
-        anime({
-            targets: cat,
-            scaleX: 1,
-            easing: 'easeInOutSine',
-            duration: 300
-            /* go back to the left side */
-        }).finished.then(function() {
-            anime({
-                targets: cat,
-                left: '0%',
-                easing: 'easeInOutSine',
-                duration: 10000,
-                /* slowly animate mirror horizontally */
-                complete: function(anim) {
-                    anime({
-                        targets: cat,
-                        scaleX: -1,
-                        easing: 'easeInOutSine',
-                        duration: 300
-                    });
-                }
-            });
-        });
-    }
-});
+
+
 
 window.addEventListener("resize", function() {
     var width = window.innerWidth;
