@@ -1,0 +1,45 @@
+
+<html>
+    <head>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+document.body.style.backgroundImage = "url('https://i.pinimg.com/originals/09/4e/e0/094ee02275f7600624c7cb795b31d8ed.gif')";
+document.body.style.backgroundSize = "cover";
+
+document.body.style.width = "100%";
+document.body.style.height = "100%";
+
+var byteCats = document.createElement('div');
+byteCats.innerHTML = 'Byte Cats';
+byteCats.style.fontFamily = "Fira Code";
+byteCats.style.fontSize = "100px";
+byteCats.style.color = "yellow";
+byteCats.style.textShadow = "0 0 10px purple";
+byteCats.style.textAlign = "center";
+byteCats.style.position = "absolute";
+byteCats.style.top = "50%";
+byteCats.style.left = "50%";
+byteCats.style.transform = "translate(-50%, -50%)";
+document.body.appendChild(byteCats);
+
+var letters = byteCats.innerHTML.split('');
+var newLetters = [];
+for (var i = 0; i < letters.length; i++) {
+  var letter = letters[i];
+  var newLetter = document.createElement('span');
+  newLetter.innerHTML = letter;
+  newLetter.style.animation = "blink " + Math.random() + "s infinite";
+  newLetters.push(newLetter);
+}
+byteCats.innerHTML = '';
+for (var i = 0; i < newLetters.length; i++) {
+  byteCats.appendChild(newLetters[i]);
+}
+});
+        </script>
+    </head>
+    <body style="margin: 0;">
+        </div>
+    </body>
+</html>
