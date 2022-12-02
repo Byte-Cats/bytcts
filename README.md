@@ -2,4 +2,4 @@
 site
 
 - [ ] auto-https
-- [ ] cool animations
+- [x] cool animations
