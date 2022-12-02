@@ -1,5 +1,5 @@
 # bytcts
 site
 
-[ ] auto-https
-[ ] cool animations
+- [ ] auto-https
+- [ ] cool animations
