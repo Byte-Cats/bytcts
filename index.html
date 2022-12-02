@@ -1,5 +1,7 @@
 <html>
     <head>
+<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>-->
+
         <script>
         document.addEventListener("DOMContentLoaded", function() {
 
@@ -10,39 +12,55 @@ document.body.style.width = "100%";
 document.body.style.height = "100%";
 
 var byteCats = document.createElement('div');
-byteCats.innerHTML = 'Byte Cats';
-byteCats.style.fontFamily = "Fira Code";
-byteCats.style.fontSize = "100px";
-byteCats.style.color = "yellow";
-byteCats.style.textShadow = "0 0 50px purple";
-byteCats.style.textAlign = "center";
-byteCats.style.position = "absolute";
-byteCats.style.top = "50%";
-byteCats.style.left = "50%";
-byteCats.style.transform = "translate(-50%, -50%)";
+    byteCats.innerHTML = 'Byte Cats';
+    byteCats.classList.add("m12");
+    byteCats.style.fontFamily = "Fira Code";
+    byteCats.style.fontSize = "3.5em";
+    byteCats.style.fontWeight = "900";
+
+    byteCats.style.textAlign = "center";
+    byteCats.style.position = "absolute";
+    byteCats.style.top = "50%";
+    byteCats.style.left = "50%";
+    byteCats.style.transform = "translate(-50%, -50%)";
+
+    /* set color to purple */
+    byteCats.style.color = "#9c27b0";
+    /* set gradient for shadow */
+    byteCats.style.textShadow = "0 0 0.5em #9c27b0, 0 0 20px #9c27b0, 0 0 30px #9c27b0, 0 0 40px #9c27b0, 0 0 50px #9c27b0, 0 0 60px #9c27b0, 0 0 70px #9c27b0";
+
+
+
+/* add the div to the body */
 document.body.appendChild(byteCats);
-            
+
 /* message saying code is lyfe at bottom footer */
 var footer = document.createElement('div');
 footer.innerHTML = 'Code is lyfe';
+            /* footer should be centered and anchored always at the bottom of the page */
+            footer.style.position = 'fixed';
+            footer.style.bottom = '0';
+            footer.style.left = '0';
+            footer.style.right = '0';
+            footer.style.textAlign = 'center';
+            footer.style.color = '#9c27b0';
+            footer.style.fontFamily = 'Fira Code';
+            footer.style.fontSize = '1.5em';
+            footer.style.fontWeight = '900';
+            footer.style.textShadow = "0 0 0.5em #9c27b0, 0 0 20px #9c27b0, 0 0 30px #9c27b0, 0 0 40px #9c27b0, 0 0 50px #9c27b0, 0 0 60px #9c27b0, 0 0 70px #9c27b0";
+
 document.body.appendChild(footer);
 
-/* footer should be centered and anchored always at the bottom of the page */
-footer.style.position = 'fixed';
-footer.style.bottom = '0';
-footer.style.left = '0';
-footer.style.right = '0';
-footer.style.textAlign = 'center';
+
 
 /* make footer flicker and change colors over time */
 var colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink', 'black', 'white'];
 var colorIndex = 0;
 
 setInterval(function() {
-  footer.style.color = colors[colorIndex];
-  colorIndex = (colorIndex + 1) % colors.length;
+    footer.style.color = colors[colorIndex];
+    colorIndex = (colorIndex + 1) % colors.length;
 }, 1000);
-
 
 });
         </script>
