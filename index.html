@@ -21,6 +21,33 @@ byteCats.style.top = "50%";
 byteCats.style.left = "50%";
 byteCats.style.transform = "translate(-50%, -50%)";
 document.body.appendChild(byteCats);
+            
+/* message saying code is lyfe at bottom footer */
+var footer = document.createElement('div');
+footer.innerHTML = 'Code is lyfe';
+document.body.appendChild(footer);
+
+/* footer should be centered and anchored always at the bottom of the page */
+footer.style.position = 'fixed';
+footer.style.bottom = '0';
+footer.style.left = '0';
+footer.style.right = '0';
+footer.style.textAlign = 'center';
+
+/* make footer flicker and change colors over time */
+var colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink', 'black', 'white'];
+var colorIndex = 0;
+setInterval(function() {
+  footer.style.color = colors[colorIndex];
+  colorIndex = (colorIndex + 1) % colors.length;
+}, 500);
+
+/* slow down the changing of colors for footer */
+setInterval(function() {
+  footer.style.color = colors[colorIndex];
+  colorIndex = (colorIndex + 1) % colors.length;
+}, 1000);
+
 
 });
         </script>
