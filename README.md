@@ -2,6 +2,6 @@
 
 
 - [ ] auto-https
-- [ ] chat
+- [ ] chat-support system
 - [ ] contact form
 - [x] cool animations
